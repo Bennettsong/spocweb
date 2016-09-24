@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>业务申请</title>
 	<!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="up_file/default.css" rel="stylesheet">
-    <link href="up_file/fileinput.css" media="all" rel="stylesheet">
-    <link href="css/list_style.css" rel="stylesheet">
-    <script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-    <script src="up_file/fileinput.js"></script>
-    <script src="up_file/fileinput_locale_zh.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../up_file/default.css" rel="stylesheet">
+    <link href="../up_file/fileinput.css" media="all" rel="stylesheet">
+    <link href="../css/list_style.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+    <script src="../up_file/fileinput.js"></script>
+    <script src="../up_file/fileinput_locale_zh.js"></script>
     
 </head>
 
@@ -22,49 +22,51 @@
 <div class="container bg1">
 	<center>
             <div class="bg3">
-            	<div class="text-center"><img src="image/1_02.gif"></div>
+            	<form action="lianxi.do" method="post"  onSubmit="return check()">
+            	<div class="text-center"><img src="../image/1_02.gif"></div>
             	<div class="list_top">联系人姓名</div>
                 <div>
-                	<textarea class="underline textarea_style"></textarea>
+                	<textarea name="name" id="name" class="underline textarea_style"></textarea>
                 </div>
             
                 <div class="list_top">联系人手机</div>
                 <div>
-                	<textarea class="underline textarea_style"></textarea>
+                	<textarea name="phone" id="phone" class="underline textarea_style"></textarea>
                 </div>
                 <div class="list_top">业务类别</div>
                 <div  id="spoc_work">
                 	<div class="checkbox">
                         <label class="checkbox-inline">
-                          <input type="checkbox" id="inlineCheckbox1" value="option1"> 微课制作
+                          <input type="checkbox" name="inlineCheckbox" id="inlineCheckbox1" value="option1"> 微课制作
                         </label>
                         <label class="checkbox-inline">
-                          <input type="checkbox" id="inlineCheckbox2" value="option2"> 慕课制作
+                          <input type="checkbox" name="inlineCheckbox" id="inlineCheckbox2" value="option2"> 慕课制作
                         </label>
                         <label class="checkbox-inline">
-                          <input type="checkbox" id="inlineCheckbox3" value="option3"> 宣传视频
+                          <input type="checkbox" name="inlineCheckbox" id="inlineCheckbox3" value="option3"> 宣传视频
                         </label>
                     </div>
                     <div class="checkbox">
                         <label class="checkbox-inline">
-                          <input type="checkbox" id="inlineCheckbox1" value="option1"> 广告制作
+                          <input type="checkbox" name="inlineCheckbox" id="inlineCheckbox1" value="option1"> 广告制作
                         </label>
                         <label class="checkbox-inline">
-                          <input type="checkbox" id="inlineCheckbox2" value="option2"> 软件定制
+                          <input type="checkbox" name="inlineCheckbox" id="inlineCheckbox2" value="option2"> 软件定制
                         </label>
                         <label class="checkbox-inline">
-                          <input type="checkbox" id="inlineCheckbox3" value="option3"> 英语翻译
+                          <input type="checkbox" name="inlineCheckbox" id="inlineCheckbox3" value="option3"> 英语翻译
                         </label>
                     </div>
                 </div>
                 <div class="list_top">具体内容</div>
                 <div>
-                	<textarea class="underline textarea_style1"></textarea>
+                	<textarea name="content" id="content" class="underline textarea_style1"></textarea>
                 </div>
                 <div class="list_top">
                 	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">添加附件</button>
-                	<button type="submit" class="btn btn-danger" style="margin-left:45%;">提交业务</button>
+                	<button name="submit" type="submit" class="btn btn-danger" style="margin-left:45%;">提交申请</button>
                 </div>
+                </form>
             </div>
             
       </center>
@@ -120,24 +122,48 @@
 							'elErrorContainer': '#errorBlock'
 						});
 					});
-                </script>   	 		
+                </script>  
                 
+                <script type="text/javascript">
+      function check()
+      {
+         var name=document.getElementById("name").value;
+         var phone=document.getElementById("phone").value;
+		 var checkbox=document.getElementsByName("inlineCheckbox");
+		 var content=document.getElementById("content").value;
+		 var m=0;
+	     if(name=="")
+	       {
+		     alert("请填写您的姓名！");
+		     return false;
+		   }
+		    if(phone=="")
+	       {
+		     alert("请填写您的电话号码！");
+		     return false;
+		   }
+		   
+		   for(var i=0;i<checkbox.length;i++)
+			{
+				if(checkbox[i].checked==false)
+				{
+					m=m+1;
+				}
+			}
+			if(m==i)
+			{
+				alert("请选组别！！！");
+				return false;
+				}
+			 if(content=="")
+	       {
+		     alert("请填写具体内容！");
+		     return false;
+		   }
+
+		     return true;
+      }
+  </script> 	 		
                 
-                
-                
-				  <!--<script script type="text/javascript">
-						function show()
-						{
-							var reader = new FileReader();
-							reader.onload = function() 
-							{
-								alert(this.result)
-							}
-							var f = document.getElementById("filePicker").files[0];
-							reader.readAsText(f);
-						}
-				  </script>
-						<input type="file" name="file" id="filePicker"/>-->
-   
 </body>
 </html>

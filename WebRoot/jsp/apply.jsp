@@ -31,9 +31,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <div class="list_top">性别</div>
                 <div class="list_top1">
-                	<input name="sex" value="1" type="radio" checked="checked">
+                	<input name="sex" value="男" type="radio" checked="checked">
                     <label for="q2_1">男</label>
-                    <input name="sex" id="q2_2" value="2" type="radio">
+                    <input name="sex" id="q2_2" value="女" type="radio">
                     <label for="q2_2">女</label>
                 </div>
                 <div  class="list_top">学院班级</div>
@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                  <div class="list_top">申报组别</div>
                 <div class="list_top1">
-                	<ul class="list-unstyled" id="spoc_gruop">
+                	<ul class="list-unstyled" id="spoc_gruop"><!--我将ul去掉了-->
                 	   <c:forEach items='${groups}' var="group">
 			              <li>
                         	<input value="${group.name}" name="group" id="group" type="radio">
@@ -88,7 +88,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          var grade=document.getElementById("grade").value;
          var inputEmail3=document.getElementById("inputEmail3").value;
          var phone=document.getElementById("phone").value;
-         var group=document.getElementById("group");
+        
+		 /*学姐，这个是我新加的内容*/
+		 var radios=document.getElementsByName("group");
+		 var m=0;
+		 /*学姐，这个是我新加的内容*/
          
 	     if(name=="")
 	       {
@@ -112,14 +116,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   }
 		    if(phone=="")
 	       {
-		     alert("请填写您的电话号码！");
+		     alert("请填写您的电话号码！");		     
 		     return false;
 		   }
-		   if(!group.checked)
-	       {
-		      alert("请选择您要加入的组！");
-		      return false;
-		   }
+		   
+		   /*学姐，这个是我新加的内容*/
+		   for(var i=0;i<radios.length;i++)
+			{
+				if(radios[i].checked==false)
+				{
+					m=m+1;
+				}
+			}
+			if(m==i)
+			{
+				alert("请选组别！！！");
+				return false;
+				}
+		  /*学姐，这个是我新加的内容*/
+		  
 		     return true;
       }
   </script>

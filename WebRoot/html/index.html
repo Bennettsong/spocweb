@@ -9,21 +9,21 @@
     <title>思博课</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- fullPage core CSS -->
-    <link rel="stylesheet" type="text/css" href="fullPage/jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="../fullPage/jquery.fullPage.css" />
     <!-- video-js core CSS -->
-	<link href="video/video-js.min.css" rel="stylesheet">
+	<link href="../video/video-js.min.css" rel="stylesheet">
     <!-- Custom styles for this websit -->
-    <link href="css/main.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
     <!--work display core css-->
-	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="css/demo.css" />
-	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="../css/component.css" />
     
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="js/ie-emulation-modes-warning.js"></script>
+    <!--[if lt IE 9]><script src="../js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../js/ie-emulation-modes-warning.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
      <!--[if lt IE 8]>
       <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
@@ -32,182 +32,21 @@
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="fullPage/jquery.fullPage.min.js"></script>
-    <script src="video/video.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../fullPage/jquery.fullPage.min.js"></script>
+    <script src="../video/video.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>  
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>  
     
     <!--work display JS-->
-    <script src="js/modernizr.custom.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-	<script src="js/masonry.pkgd.min.js"></script>
-	<script src="js/dynamics.min.js"></script>
-	<script src="js/classie.js"></script>
-	<script src="js/main.js"></script> 
-    
-	  <script>  
-          $(document).ready(function () {
-			$('#fullpage').fullpage({
-			verticalCentered:false,
-			anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
-			menu: '#menu',
-			controlArrows:false,
-			resize:false,
-			scrollingSpeed:800,
-			fitToSection:true,
-			paddingTop:'50px',
-			keyboardScrolling:true,
-			loopTop:true,
-			loopBottom:true,
-            afterLoad: function(anchorLink, index){
-                if (index ===2) {
-					$('.carousel').carousel({
-      					interval: 3000
-    				});
-                }
-            }			
-			});
-			var a=$('#example_video_1').parent().width();
-			var b=$('#unheight').height() *1.5;
-			videojs("example_video_1", { "width": a, "height": b,  "controls": true, "autoplay": false, "preload": "auto" });				
-			teamContent();
-			
-			function teamContent(){
-				//oTeamContent3
-				var oTeamContent3=document.getElementById("teamContent3");
-				var aLi = oTeamContent3.getElementsByTagName('li');
-				var oC = null;
-				var w = 118;
-				var h = 300;
-				var timer1 = null;
-				var timer2 = null;
-				create();
-				bindList();
-				function create(){
-					var oUl = document.createElement('ul');
-					for(var i=0;i<8;i++){
-						var oLi = document.createElement('li');
-						oLi.style.backgroundPosition =  -(i*w) +'px 0';
-						oUl.appendChild(oLi);
-					}
-					oTeamContent3.appendChild(oUl);
-				}
-				function bindList(){
-					
-					oTeamContent3.onmouseleave = function(){
-						removeCanvas();
-						for(var i=0;i<aLi.length;i++){
-							aLi[i].style.opacity = 1;
-						}
-					};
-					
-					for(var i=0;i<aLi.length;i++){
-						aLi[i].index = i;
-						aLi[i].onmouseover = function(){
-							addCanvas();
-							oC.style.left = this.index * w + 'px';
-							for(var i=0;i<aLi.length;i++){
-								aLi[i].style.opacity = 0.5;
-							}
-							this.style.opacity = 1;
-						};
-					}
-				}
-				function addCanvas(){
-					if(!oC){
-						oC = document.createElement('canvas');
-						oC.id = 'canvasBubble';
-						oC.width = w;
-						oC.height = h;
-						oTeamContent3.appendChild(oC);
-						bindCanvas();
-					}
-				}
-				function removeCanvas(){
-					clearInterval(timer1);
-					clearInterval(timer2);
-					oTeamContent3.removeChild(oC);
-					oC = null;
-				}
-				function bindCanvas(){
-					var oGC = oC.getContext('2d');
-			
-					var setArr = [];   //存储要绘制的所有图形的数据
-					
-					timer1 = setInterval(function(){
-						
-						oGC.clearRect(0,0,oC.width,oC.height);
-						
-						for(var i=0;i<setArr.length;i++){
-							
-							setArr[i].num += 5;
-							
-							setArr[i].x = setArr[i].startX - Math.sin(setArr[i].num*Math.PI/180)*setArr[i].step;
-							setArr[i].y = setArr[i].startY - (setArr[i].num*Math.PI/180)*setArr[i].step;
-							
-							if( setArr[i].y < 50 ){
-								setArr.splice(i,1);
-							}
-							
-						}
-						
-						for(var i=0;i<setArr.length;i++){
-							oGC.fillStyle = 'rgba('+setArr[i].c1+','+setArr[i].c2+','+setArr[i].c3+','+setArr[i].c4+')';
-							oGC.beginPath();
-								oGC.moveTo(setArr[i].x,setArr[i].y);
-								oGC.arc(setArr[i].x,setArr[i].y,setArr[i].r,0,360*Math.PI/180);
-							oGC.closePath();
-							oGC.fill();
-						}
-						
-					},1000/60);
-					
-					timer2 = setInterval(function(){
-						
-						var x = Math.random()*oC.width;
-						var y = oC.height - 10;
-						var r = Math.random()*6 + 2;
-						var c1 = Math.round(Math.random()*255);
-						var c2 = Math.round(Math.random()*255);
-						var c3 = Math.round(Math.random()*255);
-						var c4 = 1;
-						var num = 0;
-						var step = Math.random()*20 + 10;
-						var startX = x;
-						var startY = y;
-						
-						setArr.push({
-							x : x,
-							y : y,
-							r : r,
-							c1 : c1,
-							c2 : c2,
-							c3 : c3,
-							c4 : c4,
-							num : num,
-							step : step,
-							startX : x,
-							startY : y
-						});
-						
-					},100);
-				}
-			}	//oTeamContent3				
-			 
-		});//(document).ready(function	
-      </script>
-          <script>
-    	$(function () {
-		$('[data-toggle="tooltip"]').tooltip()
-		})
-    </script>
-    
-    
-    
-  
+    <script src="../js/modernizr.custom.js"></script>
+    <script src="../js/imagesloaded.pkgd.min.js"></script>
+	<script src="../js/masonry.pkgd.min.js"></script>
+	<script src="../js/dynamics.min.js"></script>
+	<script src="../js/classie.js"></script>
+	<script src="../js/main.js"></script>  
   </head>
 
   <body>
@@ -221,7 +60,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="#" id="logo"><img src="image/1_02.gif"></a>
+          <a href="#" id="logo"><img src="../image/1_02.gif"></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right" id="menu">
@@ -242,7 +81,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-5 col-xs-12 col-md-offset-1">   
-                     <video id="example_video_1" class="video-js vjs-skin-hotdog-stand vjs-big-play-centered " poster="http://video-js.zencoder.com/oceans-clip.png">
+                     <video id="example_video_1" class="video-js vjs-skin-hotdog-stand vjs-big-play-centered " poster="../image/oceans-clip.png">
                         <source id ='v1' src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
                         <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm' />
                         <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg' />
@@ -266,11 +105,11 @@
             <div class="container">
 				<div class="row">
                 	<div class="col-md-5 col-md-offset-1 hidden-xs"> 
-                    	<dt style="margin-left:5px"><img src="image/logo_03.gif"><font>创业型团队</font></dt>
+                    	<dt style="margin-left:5px"><img src="../image/logo_03.gif"><font>创业型团队</font></dt>
                         <dl>兴趣自由发展，迭代创新观念</dl>
                     </div>
                     <div class="col-md-5 col-md-offset-1 hidden-xs">
-                    	<dt><font style="margin-right:5px">学习型团队</font><img src="image/logo_10.gif"></dt>
+                    	<dt><font style="margin-right:5px">学习型团队</font><img src="../image/logo_10.gif"></dt>
                         <dl>多专业相融合，突破技术瓶颈</dl>
                     </div>
             	</div>
@@ -281,7 +120,7 @@
 
       <div class="section">  
     
-    	<div class="orange_lab" id="page2-1" style="padding:2% 0 5% 0;">
+    	<div class="orange_lab" id="page2-1" style="padding:0 0 5% 0;">
            <div class="container">
            
               <h1 class="commonTitle text-center">
@@ -293,30 +132,30 @@
                       <div class="carousel-inner">
                         <ul class="row item active">
                           <li class="col-xs-3 col-md-3">
-                            <a href="#"><img src="image/1.jpg" class="img-responsive img-thumbnail"></a>
+                            <a href="#"><img src="../image/1.jpg" class="img-responsive img-thumbnail"></a>
                           </li>
                           <li class="col-xs-3 col-md-3">
-                            <img src="image/2.jpg" class="img-responsive img-thumbnail">
+                            <img src="../image/7.jpg" class="img-responsive img-thumbnail">
                           </li>
                           <li class="col-xs-3 col-md-3">
-                            <img src="image/3.jpg" class="img-responsive img-thumbnail">
+                            <img src="../image/001.jpg" class="img-responsive img-thumbnail">
                           </li>
                           <li class="col-xs-3 col-md-3">
-                            <img src="image/3.jpg" class="img-responsive img-thumbnail">
+                            <img src="../image/3.jpg" class="img-responsive img-thumbnail">
                           </li>                   
                         </ul>
                         <ul class="row item">
                           <li class="col-xs-3">
-                            <img src="image/4.jpg" class="img-responsive img-thumbnail">
+                            <img src="../image/4.jpg" class="img-responsive img-thumbnail">
                           </li>
                           <li class="col-xs-3">
-                            <img src="image/5.jpg" class="img-responsive img-thumbnail">
+                            <img src="../image/5.jpg" class="img-responsive img-thumbnail">
                           </li>
                           <li class="col-xs-3">
-                            <img src="image/1.jpg" class="img-responsive img-thumbnail">
+                            <img src="../image/1.jpg" class="img-responsive img-thumbnail">
                           </li>
                           <li class="col-xs-3">
-                            <img src="image/1.jpg" class="img-responsive img-thumbnail">
+                            <img src="../image/1.jpg" class="img-responsive img-thumbnail">
                           </li>
                         </ul>
                       </div><!--/carousel-inner -->       
@@ -327,105 +166,96 @@
          
          
          <div class="container" id="turn_picture">
-         	
-         	<ul>
-                <li>
+         	<ul class="row">
+                <li class="col-xs-2 col-md-2">
                     <a  href="#" data-toggle="tooltip" title="漩涡鸣人！日本漫画家岸本齐史作品《火影忍者》中男主角。因为身上封印着邪恶的九尾妖狐，无父无母的他受尽了村人的冷眼与歧视，他下定决心要成为第六代火影，让所有人都认同他的存在">
-                        <div><img alt="" src="image/images/wangye_03.gif" width="150px"/></div>
-                        <div>
-                            <h3>摄影组</h3>
+                        <div><img alt="" src="../image/images/wangye_03.gif" class="img-responsive img-thumbnail"></div>
+                        <div align="center" style="padding-top:15%;">
+                            <span style="font-size:2.5vw;">摄影组</span>
                         </div>
                     </a>
                 </li>
-                <li>
+                <li class="col-xs-2 col-md-2 col-md-offset-1 col-xs-offset-1">
                     <a href="#" data-toggle="tooltip" title="蒙奇·D·路飞 是日本人气动漫 《海贼王》中的主人公。是日本人气动漫 《海贼王》中的主人公。草帽海贼团船长，梦想是找到传说中的宝藏 —— ONE PIECE，成为海贼王。">
                         <div>
-                            <img alt="" src="image/images/wangye_05.gif" width="150px"/>
+                            <img alt="" src="../image/images/wangye_05.gif" class="img-responsive img-thumbnail">
                         </div>
-                        <div>
-                            <h3>平面组</h3>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-toggle="tooltip" title="日向雏田！ 日本漫画家岸本齐史作品《火影忍者》中的3号女主角。木叶忍者村的女忍者，木叶名门日向一族宗家族长的长女。喜欢漩涡鸣人，原本是个性格柔弱的女孩，但是在鸣人的影响下逐渐变得坚强，并逐渐成长为一名优秀的忍者。在">
-                        <div><img alt="" src="image/images/wangye_07.gif" width="150px"/></div>
-                        <div>
-                            <h3>动画组</h3>
+                        <div align="center" style="padding-top:15%;">
+                            <span style="font-size:2.5vw">平面组</span>
                         </div>
                     </a>
                 </li>
-                <li>
+
+                <li class="col-xs-2 col-md-2 col-md-offset-2 col-xs-offset-2">
                     <a href="#" data-toggle="tooltip" title="漩涡鸣人！日本漫画家岸本齐史作品《火影忍者》中男主角。因为身上封印着邪恶的九尾妖狐，无父无母的他受尽了村人的冷眼与歧视，他下定决心要成为第六代火影，让所有人都认同他的存在">
                         <div>
-                            <img alt="" src="image/images/wangye_09.gif" width="150px"/>
+                            <img alt="" src="../image/images/wangye_09.gif" class="img-responsive img-thumbnail">
                         </div>
-                        <div>
-                            <h3>视频组</h3>
+                        <div align="center" style="padding-top:15%;">
+                            <span style="font-size:2.5vw">视频组</span>
                         </div>
                     </a>
                 </li>
-                <li>
+                <li class="col-xs-2 col-md-2 col-md-offset-1 col-xs-offset-1">
                     <a href="#" data-toggle="tooltip" title="漩涡鸣人！日本漫画家岸本齐史作品《火影忍者》中男主角。因为身上封印着邪恶的九尾妖狐，无父无母的他受尽了村人的冷眼与歧视，他下定决心要成为第六代火影，让所有人都认同他的存在">
                         <div>
-                            <img alt="" src="image/images/wangye_11.gif" width="150px"/>
+                            <img alt="" src="../image/images/wangye_11.gif" class="img-responsive img-thumbnail">
                         </div>
-                        <div>
-                            <h3>程序组</h3>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-toggle="tooltip" title="漩涡鸣人！日本漫画家岸本齐史作品《火影忍者》中男主角。因为身上封印着邪恶的九尾妖狐，无父无母的他受尽了村人的冷眼与歧视，他下定决心要成为第六代火影，让所有人都认同他的存在">
-                        <div>
-                            <img alt="" src="image/images/wangye_13.gif" width="150px"/>
-                        </div>
-                        <div>
-                            <h3>创意组</h3>
+                        <div align="center" style="padding-top:15%;">
+                            <span style="font-size:2.5vw">程序组</span>
                         </div>
                     </a>
                 </li>
+         
     		</ul>
          </div>
          
       </div><!--/section2 -->
 
       
-      <div class="section demo-2 orange_lab">
+      <div class="section demo-2 orange_lab" id="section3">
       		<div class="section__heading">思博课</div>
+            	<div class="section__body">
+                	<p>我们个性，我们自由，我们勇敢，我们坚持，我们创新</p>
+                    <p>我们将无限的热情与激情投诸于作品的创造中。</p>
+                    <p>每一幕精妙绝伦的画面都伴随着帧与帧之间无数火花的碰撞</p>
+                    <p>每一个惟妙惟肖的勾勒都是点与线的巧妙结合</p>
+                    <p>每一次流畅自如的点击都促进了硬件与软件的亲密交流</p>
+                    <p>每一个呈现给你的作品都是我们团结合作，勇敢创新的成果</p>
+                </div>
 				<div class="isolayer isolayer--deco4">
 					<ul class="grid">
 						<li class="grid__item"><!--.isolayer--deco4 .grid__link div.layer的css块可以该背景图片的高度和宽度-->
-							<a class="grid__link" href="#" data-toggle="modal" data-target="#myModal"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="img/Dribbble/2.gif" alt="01" />
-							</a>
+							<a class="grid__link" href="#" data-toggle="modal" data-target="#myModal" data="http://vjs.zencdn.net/v/oceans.mp4" tle="类别名：作品名"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/2.gif" alt="01" />
+							</a><!--超链接a标签请后台自动生成，主要修改自定义的data属性（视频源地址）和tle属性（类别：作品名）-->
 						</li>
 						<li class="grid__item">
-							<a class="grid__link" href="#" data-toggle="modal" data-target="#myModal"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="img/Dribbble/3.gif" alt="02" /></a>
+							<a class="grid__link" href="#" data-toggle="modal" data-target="#myModal" data="http://vjs.zencdn.net/v/oceans.mp4" tle="类别名：作品名"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/3.gif" alt="02" /></a>
 						</li>
 						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="img/Dribbble/4.gif" alt="03" /></a>
+							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/4.gif" alt="03" /></a>
 						</li>
 						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="img/Dribbble/4.png" alt="04" /></a>
+							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/4.png" alt="04" /></a>
 						</li>
 						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="img/Dribbble/5.png" alt="05" /></a>
+							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/5.png" alt="05" /></a>
 						</li>
 						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="img/Dribbble/2.gif" alt="06" /></a>
+							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/2.gif" alt="06" /></a>
 						</li>
 						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="img/Dribbble/7.png" alt="07" /></a>
+							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/7.png" alt="07" /></a>
 						</li>
 						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="img/Dribbble/8.png" alt="08" /></a>
+							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/8.png" alt="08" /></a>
 						</li>
 						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="img/Dribbble/9.png" alt="09" /></a>
+							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/9.png" alt="09" /></a>
 						</li>
 					</ul>
 				</div>	
-      </div><!--/section3 -->solutions
+      </div><!--/section3 -->
       
       <div class="section">
       		<div class="fourth_top">
@@ -546,17 +376,18 @@
                         <div class="col-md-2 col-xs-2" id="fourth">
                         	<span id="span" style="color:#b04a34;">收费指南</span>
                         	<ul class="list-unstyled fourth_right">
-                            	<li>微课慕课</li>
-                                <li>广告</li>
-                                <li>视频</li>
+                            	<li class="red"><a href="#">微课慕课</a></li>
+                                <li class="red"><a href="#">广告制作</a></li>
+                                <li class="red"><a href="#">视频宣传</a></li>
                             </ul>
                             
                             <ul class="list-unstyled">
-                            	<li>行业软件</li>
-                                <li>商业活动软件</li>
-                                <li class="gray">游戏软件</li>
-                                <li class="gray">VR视频</li>
-                                <li class="gray">VR游戏</li>
+                            	<li class="red"><a href="#">英语翻译</a></li>
+                            	<li class="red"><a href="#">行业软件</a></li>
+                                <li class="red"><a href="#">商业活动软件</a></li>
+                                <li class="gray"><a href="#" onclick="return false;">游戏软件</a></li>
+                                <li class="gray"><a href="#" onclick="return false;">VR视频</a></li>
+                                <li class="gray"><a href="#" onclick="return false;">VR游戏</a></li>
                             </ul>
                             <a type="button" class="btn btn-danger" href="list2.html" target="_blank">点击申请</a>
                         </div>
@@ -566,124 +397,107 @@
       </div><!--/section4 -->
 
       <div class="section">
-      	<div class="slide">
-      		<div style="position:relative; top:5%;overflow:hidden; min-height:320px; height:100%;">
+     	<div class="slide">
+      		<div >
            		<div id="list">
               		<div id="team" class="liList">
-                  		<div id="teamContent" class="divList">	
+                  		<div id="teamContent" class="divList">
+                            <div class="teamContent1">
+                                <h1 class="commonTitle" style="font-size:60px; margin-top:0px;">
+                                    <span>有你更精彩</span><br>
+                                    
+                                </h1>
+                            </div>
+                            <div class="teamContent2">
+                                <p class="commonText">
+                                   我们成立于2014年，工作室位于湖南农业大学文渊馆202，全团成员多学科交叉。我们拥有教师团队和学生团队两个层次。
+                                    <br>
+                                    学生团队：广告、视频、编程项目与竞赛。<br>
+                                    教师团队：带领学生提前体验社会生产、自研信息化课程改革方法。 
+                                </p>
+                            </div>
                       		<div class="teamContent3" id="teamContent3"></div>
+                            
                   		</div>
               		</div>
            		</div>
          	</div>
         </div>
-        <div class="slide">
-        
-        </div>
+
         
       </div><!--/section5 -->
 		
     </div><!--/fullpage -->
 
-
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
-   <script>
-		(function() {
-			function getRandomInt(min, max) {
-				return Math.floor(Math.random() * (max - min + 1)) + min;
-			}
-			new IsoGrid(document.querySelector('.isolayer--deco4'), {
-				perspective: 3000,
-				transform : 'translate3d(-200px,-200px,0) scale3d(0.8,0.8,1) rotateY(50deg) rotateZ(-10deg)',
-				stackItemsAnimation : {
-					properties : function(pos) {
-						return {
-							rotateX: (pos+1) * -15
-						};
-					},
-					options : function(pos, itemstotal) {
-						return {
-							type: dynamics.spring,
-							delay: (itemstotal-pos-1)*30
-						};
-					}
-				},
-				onGridLoaded : function() {
-					classie.add(document.body, 'grid-loaded');
-				}
-			});
-		})();
-</script>
 <!-- Modal1 登录 -->
-<center>
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width:350px; margin-top:30%;">
-      <div class="modal-header" style="height:90px; background:url(image/1_02_03.gif) center no-repeat">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title text-center" id="myModalLabel"></h4>
+    <center>
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:350px; margin-top:30%;">
+          <div class="modal-header" style="height:90px; background:url(../image/1_02_03.gif) center no-repeat">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-center" id="myModalLabel"></h4>
+          </div>
+          <form method="post"  onSubmit="return check()">
+              <div class="modal-body">
+                   
+                          <div class="input-group" style="margin-top:15px;">
+                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="test" class="form-control" name="admin" id="admin" placeholder="账号">
+                          </div>
+                          <div class="input-group" style="margin-top:30px;">
+                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-th"></span></span>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+                          </div>
+              </div>
+              <div class="text-center" style="margin:20px 0 40px 0">
+                <button type="submit" class="btn btn-danger"   style="width:85%;">登录</button>
+              </div>
+          </form>
+          
+          <script type="text/javascript">
+      function check()
+      {
+         var admin=document.getElementById("admin").value;
+         var password=document.getElementById("password").value;
+	     if(admin=="")
+	       {
+		     alert("请输入您的账号！");
+		     return false;
+		   }
+		      if(password=="")
+	       {
+		     alert("请输入您的密码！");
+		     return false;
+		   }
+
+		     return true;
+      }
+  </script>
+        </div>
       </div>
-      <form>
+    </div>
+    </center>
+    
+    <!-- Modal2 视频-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document" style="width:450px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
           <div class="modal-body">
-               
-                      <div class="input-group" style="margin-top:15px;">
-                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="test" class="form-control" id="exampleInputEmail1" placeholder="账号">
-                      </div>
-                      <div class="input-group" style="margin-top:30px;">
-                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-th"></span></span>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
-                      </div>
+            <video id="example_video_2" class="video-js vjs-default-skin vjs-big-play-centered" controls ="none" width="400" height="210"
+          poster="../image/oceans-clip.png"
+          data-setup="{}">
+           <source id="1" src="" type='video/mp4' />
           </div>
-          <div class="text-center" style="margin:20px 0 40px 0">
-            <button type="submit" class="btn btn-danger"   style="width:85%;">登录</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
-      </form>
-    </div>
-  </div>
-</div>
-</center>
-
-<!-- Modal2 视频-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
       </div>
-      <div class="modal-body">
-        <video id="example_video_2" class="video-js vjs-default-skin" controls ="none" width="400" height="210"
-      poster="http://video-js.zencoder.com/oceans-clip.png"
-      data-setup="{}">
-    <source id="1" src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
-    <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm' />
-    <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg' />
-    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track>
-    <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
- <script>
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').focus()
-			var myPlayer = videojs('example_video_2'); ///视频插件的idexample_video_1
-			myPlayer.pause();
-			myPlayer.currentTime(0);
-
-})
-</script>  
+    </div> 
 
 </body></html>

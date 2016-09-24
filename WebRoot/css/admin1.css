@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+
+.bg{
+	background:url(../image/header_bg.jpg);
+	height:56px;
+	}
+.bg2{
+	background:url(../image/header_right.gif);
+	height:56px;
+	}
+.text-while{
+	color:#fff;
+	font-size:2en;
+	text-align:center;
+	line-height:56px;}
+.admin_table{
+	cellspacing:0;
+    cellpadding:0;
+	width:150px;
+	border:0;}
+.admin_table_1{
+	height:600px;
+	cellspacing:0;
+	cellpadding:0;
+    width:170px;
+	background:url(../image/menu_bg.jpg);
+	border:0;}
+.admin_black{
+	background:#003;
+	color:#fff;}
+.admin_black a{
+	text-decoration:none;
+	color:#fff;}
+.admin_roll{
+	 overflow-y:auto;
+	 height:300px;}
+.admin_spacing{
+	margin-top:30px;}
+.admin_color{
+	color:#000;}
+#image-wrap{
+	margin:0px;
+	float:left;}
+.admin_input{
+	height:130px;}
+.admin_hide{
+	width:1000px;
+	top:20px;
+	left:20px;
+	position:absolute;
+	display:none;}
+

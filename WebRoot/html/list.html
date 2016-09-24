@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <title>加入我们</title>
 	<!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/list_style.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/list_style.css" rel="stylesheet">
+    <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -15,100 +15,128 @@
 <div class="container bg1">
 	<center>
             <div class="bg2">
-            	<div class="text-center"><img src="image/1_02.gif"></div>
+            	<form action="apply.do" method="post"  onSubmit="return check()">
+            	<div class="text-center"><img src="../image/1_02.gif"></div>
             	<div class="list_top">姓名</div>
                 <div>
-                	<textarea class="underline textarea_style"></textarea>
+                	<textarea name="name" id="name" class="underline textarea_style"></textarea>
                 </div>
                 <div class="list_top">性别</div>
                 <div class="list_top1">
-                	<input name="q2" value="1" type="radio">
+                	<input name="sex" value="1" type="radio">
                     <label for="q2_1">男</label>
-                    <input name="q2" id="q2_2" value="2" type="radio">
+                    <input name="sex" id="q2_2" value="2" type="radio">
                     <label for="q2_2">女</label>
                 </div>
-                <!--<div class="list_top">出生年月</div>
-                <div>
-                	<select name="year1"></select>
-                    <select name="month1"></select>
-                    <select name="day1"></select>
-                    <script>
-                        new YMDselect('year1','month1','day1');
-                    </script>
-                </div>-->
                 <div  class="list_top">学院班级</div>
                 <div class="list_top1">
-                	<select id="s_province" name="s_province"></select>  
-                    <select id="s_city" name="s_city" ></select>
-                    <script class="resources library" src="up_file/area.js" type="text/javascript"></script>
-                    <script type="text/javascript">_init_area();</script>
+                	<select  name="college" id="college" size="1">
+                	  <option value="-1">请选择</option>
+                      <option value="111">信科院</option>
+                      <option value="111">信科院</option>	
+               	    </select>  
+                    <select name="grade" id="grade">
+                      <option  value="-1">请选择 </option>
+                      <option value="大一">大一</option>
+                      <option value="大二"> 大二 </option>
+                      <option value="大三"> 大三 </option>
+                      <option value="大四"> 大四 </option>
+                     </select> 
                 </div>
                 <div class="list_top1">
-                	<input type="email" class="form-control textarea_style" id="inputEmail3" placeholder="班级">
+                	<input type="text" name="major" class="form-control textarea_style" id="inputEmail3" placeholder="班级">
                 </div>
                 <div class="list_top">手机号</div>
                 <div>
-                	<textarea class="underline textarea_style"></textarea>
+                	<textarea name="phone" id="phone" class="underline textarea_style"></textarea>
                 </div>
                  <div class="list_top">申报组别</div>
                 <div class="list_top1">
-                	<ul class="list-unstyled" id="spoc_gruop">
-                    	<li>
-                        	<input value="1" type="radio">
-                            <label>程序组</label>
-                        </li>
-                        <li>
-                        	<input value="1" type="radio">
-                            <label>视频组</label>
-                        </li>
-                        <li>
-                        	<input value="1" type="radio">
-                            <label>摄影组</label>
-                        </li>
+                			<label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="group" value="option1"> 程序组
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="group1" value="option2"> 视频组
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="group2" value="option3"> 摄影组
+                            </label>
+                        
 						<br><br>
-                        <li>
-                        	<input value="1" type="radio">
-                            <label>平面组</label>
-                        </li>
-                        <li>
-                        	<input value="1" type="radio">
-                            <label>动画组</label>
-                        </li>
-                        <li>
-                        	<input type="radio">
-                            <label>创意组</label>
-                        </li>
-                    </ul>
+                        
+                        	<label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="group3" value="option1"> 平面组
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="group4" value="option2"> 动画组
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="group5" value="option3"> 创意组
+                            </label>
                 </div>
                 <div class="list_top2 text-center">
-                	<button type="button" class="btn btn-danger" style="width:100px;">提交</button>
+                	<input type="submit" name="submit"  class="btn btn-danger" style="width:100px;">
                 </div>
+                </form>
             </div>
-            
-            <!--<div class="image_wrap_right">
-				<script>
-					$(document).ready(function(){
-					
-					//图片显示插件
-					
-					$.imageFileVisible({wrapSelector: "#image-wrap",   
-					
-					fileSelector: "#file",
-					
-					width: 120,
-					
-					height: 150
-					
-					});
-					
-					});
-					
-                </script>
-                <div id="image-wrap"></div>
-                <input type="file" id="file">
-            </div>-->
       </center>
 </div>
 </div>
+  <script type="text/javascript">
+      function check()
+      {
+         var name=document.getElementById("name").value;
+         var college=document.getElementById("college").value;
+         var grade=document.getElementById("grade").value;
+         var inputEmail3=document.getElementById("inputEmail3").value;
+         var phone=document.getElementById("phone").value;
+         var group=document.getElementById("group");
+		 var radios=document.getElementsByName("inlineRadioOptions");
+		 var m=0;
+         
+	     if(name=="")
+	       {
+		     alert("请填写您的姓名！");
+		     return false;
+		   }
+		    if(college==-1)
+	       {
+		     alert("请选择您所在的学院！");
+		     return false;
+		   }
+		    if(grade==-1)
+	       {
+		     alert("请选择您的年级！");
+		     return false;
+		   }
+		      if(inputEmail3=="")
+	       {
+		     alert("请填写您的班级！");
+		     return false;
+		   }
+		    if(phone=="")
+	       {
+		     alert("请填写您的电话号码！");
+		     return false;
+		   }
+		   
+		   for(var i=0;i<radios.length;i++)
+			{
+				if(radios[i].checked==false)
+				{
+					m=m+1;
+				}
+			}
+			if(m==i)
+			{
+				alert("请选组别！！！");
+				return false;
+				}
+
+		     return true;
+      }
+  </script>
+  
+
 </body>
 </html>

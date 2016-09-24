@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.spoc.po.member_product" table="member_product">
+		<id name="lpid" column="lpid" type="java.lang.Integer">
+			<generator class="increment"></generator>
+		</id>
+		<property name="pid" type="java.lang.Integer">
+			<column name="pid"></column>
+		</property>
+		<property name="student" type="java.lang.String">
+			<column name="student"></column>
+		</property>
+		<property name="teacher">
+			<column name="teacher"></column>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -38,6 +38,10 @@ public class UserApplyController {
   {
 	 
 	  String name=request.getParameter("name");
+	  if(name==null)
+	  {
+		  return "forward:applyjsp.do";
+	  }
 	  String sex=request.getParameter("sex");
 	  String college=request.getParameter("college");
 	  String grade=request.getParameter("grade");
@@ -48,7 +52,7 @@ public class UserApplyController {
 	  Apply apply=new Apply(name,sex,college,grade,major,phone,group);
 	  applyService.userApply(apply);
 	  
-	  return "index";
+	  return "redirect:../affair.do";
   }
   
   @RequestMapping("/applyjsp.do")

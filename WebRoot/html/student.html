@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>学生界面</title>
+<link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="../css/admin1.css" type="text/css" rel="stylesheet">
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="text-right admin_spacing">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="exampleInputName2">用户搜索</label>
+                <input type="text" class="form-control" id="exampleInputName2" placeholder="姓名">
+            </div>
+            <button type="submit" class="btn btn-default">搜索</button>
+        </form>
+    </div>
+    
+    <div class="row admin_black admin_spacing">
+    	<div class="col-md-2">管理人员基本信息表</div>
+        <div class="col-md-2 col-md-offset-8">
+        	<span>
+                <a href="#"><img src="../image/add.gif" width="10" height="10" /> 添加</a>   &nbsp;
+                <a href="#"><img src="../image/del.gif" width="10" height="10" /> 删除</a>    &nbsp;&nbsp;
+                <a href="#"><img src="../image/edit.gif" width="10" height="10" /> 编辑</a>   &nbsp;
+            </span>
+        </div>
+    </div>
+    <div id="tableBox">
+    	<div class="admin_roll">
+            <table class="table" id="tabBox">
+                <tr>
+                    <td></td>
+                    <td>用户名</td>
+                    <td>用户角色</td>
+                    <td>联系方式</td>
+                    <td>组别</td>
+                    <td>基本操作</td>
+                </tr>
+                <tr>
+                    <td><label><input type="checkbox" name="1" class="ck"/></label></td>
+                    <td>admin</td>
+                    <td>系统管理员</td>
+                    <td>xxXXXXXXXXX</td>
+                    <td>程序组</td>
+                    <td>查看详情</td>
+                </tr>
+                <tr>
+                    <td><label><input type="checkbox" name="1" class="ck"/></label></td>
+                    <td>admin</td>
+                    <td>系统管理员</td>
+                    <td>xxXXXXXXXXX</td>
+                    <td>程序组</td>
+                    <td>查看详情</td>
+                </tr>
+                <tr>
+                    <td><label><input type="checkbox" name="1" class="ck"/></label></td>
+                    <td>admin</td>
+                    <td>系统管理员</td>
+                    <td>xxXXXXXXXXX</td>
+                    <td>程序组</td>
+                    <td>查看详情</td>
+                </tr>
+                <tr>
+                    <td><label><input type="checkbox" name="1" class="ck"/></label></td>
+                    <td>admin</td>
+                    <td>系统管理员</td>
+                    <td>xxXXXXXXXXX</td>
+                    <td>程序组</td>
+                    <td>查看详情</td>
+                </tr>
+                <tr>
+                    <td><label><input type="checkbox" name="1" class="ck"/></label></td>
+                    <td>admin</td>
+                    <td>系统管理员</td>
+                    <td>xxXXXXXXXXX</td>
+                    <td>程序组</td>
+                    <td>查看详情</td>
+                </tr>
+                <tr>
+                    <td><label><input type="checkbox" name="1" class="ck"/></label></td>
+                    <td>admin</td>
+                    <td>系统管理员</td>
+                    <td>xxXXXXXXXXX</td>
+                    <td>程序组</td>
+                    <td>查看详情</td>
+                </tr>
+                <tr>
+                    <td><label><input type="checkbox" name="1" class="ck"/></label></td>
+                    <td>admin</td>
+                    <td>系统管理员</td>
+                    <td>xxXXXXXXXXX</td>
+                    <td>程序组</td>
+                    <td>查看详情</td>
+                </tr>
+            </table>
+    </div>
+        <div class="text-right" style="margin-right:60px;">
+            <label><input type="checkbox" name="0" class="ck-all"/>全选</label>
+            <label><input type="checkbox" name="0" class="ck-re"/>反选</label>
+        </div>
+    </div>
+    <script>
+    
+        var tabBox = document.getElementById("tabBox"),
+            //tab = tabBox.getElementsByClassName("tab"),
+            tab = [0,1,2,3],
+            tabShow = tabBox.getElementsByClassName("tab-show");
+    
+        function Index1(val){
+            for(var i =0; i<tab.length;i++){
+                if(tab[i] == val){
+                    return i
+                }
+            }
+        }
+    
+    
+        allCkBox(); //js全选反选调用
+        allCkBox("tableBox2"); //可以重复使用哦，传个外层 id 进去就可以了
+    
+        function allCkBox(id){
+            //声明各种变量
+            var tableBox = document.getElementById(id||"tableBox"),
+                table = tableBox.getElementsByTagName("table")[0],
+                ck = tableBox.getElementsByClassName("ck"),
+                tableFoot = tableBox.getElementsByClassName("table-foot")[0],
+                ckAll = tableBox.getElementsByClassName("ck-all")[0],
+                ckRe = tableBox.getElementsByClassName("ck-re")[0];
+    
+            //js全选
+            ckAll.onchange = function(){
+                allCk(this.checked);
+            };
+    
+            //js反选
+            ckRe.onchange = function(){
+                reCk();
+            };
+    
+            //全选函数
+            function allCk(bool){
+                for(var i =0; i<ck.length;i++){
+                    ck[i].checked = bool;
+                }
+            }
+    
+            //反选函数 by:<a href="http://www.51xuediannao.com/">懒人建站</a>
+            function reCk(){
+                for(var i =0; i<ck.length;i++){
+                    ck[i].checked ? ck[i].checked = false : ck[i].checked = true;
+                }
+            }
+        }
+    
+    </script>
+</div>
+</body>
+</html>

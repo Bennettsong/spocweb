@@ -42,6 +42,19 @@ public void setGid(int gid) {
 public Group_manage() {
 	super();
 }
+
+public Group_manage(String name, String description) {
+	super();
+	this.name = name;
+	this.description = description;
+}
+
+public Group_manage(int gid, String name, String description) {
+	super();
+	this.gid = gid;
+	this.name = name;
+	this.description = description;
+}
   
   
 }

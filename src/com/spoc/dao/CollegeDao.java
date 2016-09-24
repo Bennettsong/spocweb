@@ -20,9 +20,15 @@ public class CollegeDao {
 	public List<College> getColleges()
 	{
 		Session session=sessionFactory.openSession();
+		List<College> list=null;
+		try{
 		Query query=session.createQuery("from College");
-		List<College> list=query.list();
-		
+		list=query.list();
+		}catch (Exception ex) {
+			System.out.println(ex);
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 }
